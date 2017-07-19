@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    "react-html-attrs",
+    ["import", { libraryName: "antd", style: "css" }]
+  ]
+}
