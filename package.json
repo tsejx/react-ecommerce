@@ -1,0 +1,53 @@
+{
+  "name": "ReactBase",
+  "version": "1.2.0",
+  "description": "",
+  "main": "./config/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node ./config",
+    "build": "cross-env NODE_ENV=production node ./config",
+    "packer": "rimraf dist/* && webpack --config ./config/packer/prod.js --progress"
+  },
+  "author": "tsejx",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-import": "^1.2.1",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.28.0",
+    "mockjs": "^1.0.1-beta3",
+    "node-sass": "^4.5.3",
+    "open-browser-webpack-plugin": "0.0.5",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-notifier": "^1.5.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "es6-promise": "^4.1.0",
+    "prop-types": "^15.5.10",
+    "rc-banner-anim": "^0.5.13",
+    "rc-queue-anim": "^1.0.5",
+    "rc-tween-one": "^1.2.8",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-slick": "^0.14.11",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.70.0",
+    "slick-carousel": "^1.6.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}
