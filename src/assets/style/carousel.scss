@@ -1,0 +1,196 @@
+$hundred: 100%;
+@mixin clear-box {
+  margin: 0;
+  padding: 0;
+}
+
+// -----------------------------------
+// Carousel 走马灯
+.carousel-wrap {
+  position: relative;
+  width: $hundred;
+  height: 690px;
+  margin: 50px 0;
+  overflow: hidden;
+  cursor: default;
+  .carousel-elem {
+    height: 100%;
+    .carousel-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: {
+        size: cover;
+        position: center;
+      }
+    }
+    @mixin carousel-text {
+      color: rgba(255,255,255,1.0);
+      text-align: center;
+      letter-spacing: 2px;
+      font: {
+        weight: bold;
+        family: 'Lobster';
+      }
+      &::selection {
+        background-color:transparent;
+      }
+    }
+    .carousel-title {
+      margin: 280px auto 0;
+      h1 {
+        @include carousel-text;
+        font-size: 96px;
+      }
+    }
+    p {
+      @include carousel-text;
+      font: {
+        size: 24px;
+        weight: normal;
+      }
+    }
+  }
+  // // 走马灯上下切换按钮
+  .banner-anim-arrow-default {
+    position:absolute;
+    width: 50px;
+    height: 100px;
+    margin-top: -30px;
+    background-color: rgba(0,0,0,.1);
+    color: rgba(255,255,255,.6);
+    transition: 300ms;
+    &:hover {
+      color: rgba(255,255,255,1.0);
+      background-color: rgba(0,0,0,.3);
+    }
+  }
+  @mixin both-prev-after {
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background: rgba(255,255,255,1.0);
+    display: block;
+    content: '';
+  }
+  @mixin arrow-up {
+    top: 24.5px;
+    left: 20px;
+    @include both-prev-after;
+  }
+  @mixin arrow-down {
+    bottom: 24.5px;
+    left: 20px;
+    @include both-prev-after;
+  }
+  $positive-rotate: rotate(40deg);
+  $negative-rotate: rotate(-40deg);
+  .prev {
+    &:before {
+      transform: $positive-rotate;
+      @include arrow-up;
+    }
+    &:after {
+      transform: $negative-rotate;
+      @include arrow-down;
+    }
+  }
+  .next {
+    right: 0;
+    &:before {
+      transform: $negative-rotate;
+      @include arrow-up;
+    }
+    &:after {
+      transform: $positive-rotate;
+      @include arrow-down;
+    }
+  }
+  .banner-anim-arrow {
+    cursor: pointer;
+    z-index: 10;
+  }
+  // 走马灯缩略图（底部导航）
+  .banner-anim-thumb-default {
+    height: 40px;
+    line-height: 40px;
+    span {
+      width: 30px;
+      height: 10px;
+      margin: 0 5px;
+      border-radius: 5px;
+      transition: background-color 1000ms;
+      background-color: rgba(255,255,255,.3);
+    }
+  }
+  .banner-anim-thumb {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: $hundred;
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+    @include clear-box;
+    span {
+      pointer-events:auto;
+      cursor: pointer;
+      display: inline-block;
+      list-style:none;
+    }
+    .active {
+      background-color: rgba(255,255,255,1.0);
+    }
+  }
+}
+
+// ----------------------------------------------------------
+// 推荐商品栏走马灯
+#recommend {
+  .change {
+    display: inline-block;
+    width: 100%;
+    padding-right: 4rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(0,0,0,1.0);
+    text-align: right;
+    cursor: pointer;
+  }
+  .slick-slider {
+    width: 100%;
+    height: 360px;
+    .slick-slide {
+      padding:0 10px;
+      .product-info {
+        border: none;
+        box-shadow: none;
+        .header a{
+          display: inline-block;
+          width: 100%;
+          color: black;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .content {
+          border: none;
+        }
+        .content.extra {
+          display: none;
+          font-size: 14px;
+          .market-price {
+            text-decoration: line-through;
+          }
+          .sale-price {
+            color: rgba(0,0,0,1.0);
+          }
+        }
+      }
+
+    }
+  }
+}

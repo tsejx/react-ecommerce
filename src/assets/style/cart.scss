@@ -1,0 +1,128 @@
+#checkout {
+  margin-bottom: 4rem;
+}
+
+// Bill 订单结算的重用样式
+@mixin bill {
+  width: 100%;
+  height: 160px;
+  padding: 24px;
+  border-top: 1px solid rgba(0,0,0,.2);
+  .divider {
+    margin: 8px 0;
+  }
+  li span:last-child{
+    float: right;
+  }
+  li:last-child {
+    margin-top: 10px;
+  }
+}
+
+// Order Item 订单单品的重用样式
+@mixin order-item {
+  height: 100%;
+  h3,h4 {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+  }
+  img,.image{
+    width: 84px;
+    height: 126px;
+  }
+  span {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 15px;
+    &:last-child {
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+}
+
+// Checkout Controller 下单操作栏
+#checkout-controller {
+  margin: 0 1rem;
+  padding-bottom: 2rem;
+  border: 1px solid rgba(0,0,0,.3);
+  height: auto;
+  h2 {
+    width: 94%;
+    margin: 0 auto;
+    padding: 18px 24px;
+  }
+  .control-wrap {
+    padding: 2rem 1.2rem;
+  }
+  // Confirm Order 确认订单信息
+  .table {
+    width: 90%;
+    margin: 2rem auto;
+  }
+  .button {
+    margin-left: 3rem;
+  }
+}
+
+// Order Bar 订单栏
+#order-bar {
+  margin: 0 1rem;
+  border: 1px solid rgba(0,0,0,.3);
+  min-height: 375px;
+  h2 {
+    width: 100%;
+    margin: 0;
+    padding: 18px 24px;
+  }
+  // Goods Item 清单单品项
+  .item {
+    @include order-item;
+  }
+  // Order Bill 购物账单
+  .order-bill {
+    @include bill;
+  }
+}
+
+// Popup Cart 购物车提示框
+.popup-cart {
+  width: 320px;
+  .order-bill {
+    @include bill;
+    margin: 0;
+  }
+  #cart-window {
+    width: 98%;
+    max-height: 250px;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .item {
+      @include order-item;
+      padding-bottom: 0;
+      span {
+        padding: 2px 0;
+        font-size: 13px;
+      }
+    }
+  }
+  .checkout-btn {
+    display: block;
+    width: 120px;
+    height: 40px;
+    margin: 1rem auto;
+    background-color: black;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}

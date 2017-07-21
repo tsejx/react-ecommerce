@@ -1,0 +1,79 @@
+
+#main-wrap {
+  width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  // Classification Area Sidebar Navigation 分类业侧边导航
+  .sidebar-menu {
+    .item{
+      height: 30px;
+      padding: 0;
+      line-height: 30px;
+      a{
+        display:inline-block;
+        width: 100%;
+        height: 100%;
+        color: rgba(0,0,0,.3);
+        transition: .3s;
+      }
+      &.selected a,&:hover a{
+        color: black;
+        text-decoration:none;
+      }
+    }
+  }
+  // Sequence Menu 排序菜单
+  .sequence-menu {
+    float: right;
+    right: 0;
+    display: inline-block;
+    width: 10rem;
+  }
+  p {
+    float: left;
+    display: inline-block;
+  }
+}
+
+// Product Showcase 商品展示框
+#product-showcase {
+  p {
+    float: left;
+    display: inline-block;
+  }
+  .sequence-menu {
+    float: right;
+    right: 0;
+    display: inline-block;
+  }
+  .page-bar {
+    float: left;
+    margin-left: 20px;
+    .item{
+      padding: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        line-height: 38px;
+        text-align: center;
+        transition: .3s;
+        &:hover{
+          color: black;
+        }
+      }
+      &.selected a {
+        @extend a:hover;
+      }
+    }
+  }
+}
+
+// Back To Top Button 回到顶部按钮
+#tb-btn {
+  display: none;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}

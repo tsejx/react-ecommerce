@@ -1,0 +1,113 @@
+$hundred: 100%;
+// 清除上下边距
+@mixin clear-up-down {
+  margin: {
+    top: 0;
+    bottom: 0;
+  }
+  padding: {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+#body {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  background-color: rgba(255, 255, 255,1.0);
+}
+
+// Log in & Search Bar 登录与搜索栏
+#header-tool {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: $hundred;
+  height: 54px;
+  background-color:rgba(255,255,255,1.0);
+  border-bottom:1px solid rgba(187,189,197,0.3);
+  z-index: 100;
+  .tool-btn {
+    background: transparent;
+  }
+  .search-bar {
+    outline: none;
+    .input,input {
+      height: 100%;
+      border: 1px solid transparent;
+    }
+    .results {
+      width: 14rem;
+    }
+  }
+}
+
+// Brand 品牌展示栏
+#header-brand {
+  height: auto;
+  margin: 2rem 30rem 0;
+  a {
+    color: rgba(205, 32, 38, 1.0);
+    font: bold 128px 'CevicheOne';
+    &::selection,&:focus {
+      background-color: none;
+      text-decoration: none;
+    }
+  }
+  .brand-description {
+    color: black;
+    font: 24px 'Lobster';
+    letter-spacing: 1px;
+  }
+
+}
+
+// Navigation 导航栏
+#header-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+  width: $hundred;
+  height: 118px;
+  overflow: hidden;
+  z-index: 50;
+  @include clear-up-down;
+  .nav-item{
+    height: 120px;
+    margin: 2rem;
+    padding: 0;
+    line-height: 120px;
+    background: transparent;
+    a{
+      display: inline-block;
+      height: 80px;
+      color: rgba(0,0,0,0.4);
+      font-size: 16px;
+      line-height: 80px;
+      letter-spacing: 5px;
+      &:hover,&:focus,&.active {
+        color: black;
+        border-bottom: 4px solid rgba(232,173,159,1.0);
+        transition: 300ms;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Header Divider 顶部分割线
+#header-divider {
+  margin-bottom: 2rem;
+  font-weight: normal;
+  a {
+    color: rgba(0,0,0,.3);
+    &:hover {
+    color: rgba(0,0,0,1.0);
+    text-decoration: underline;
+    }
+  }
+}

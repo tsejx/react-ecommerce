@@ -1,0 +1,94 @@
+#footer {
+  $text: rgba(255,255,255,.3);
+  $hightlight: rgba(255,255,255,1.0);
+  @mixin submenu-text {
+    color: $text;
+    font-size: 13px;
+    &:hover {
+      color: white;
+    }
+  }
+  @mixin box-center {
+    margin: {
+      right: 10rem;
+      left: 10rem;
+    }
+  }
+  width: 100%;
+  height: auto;
+  margin: 30 auto 0;
+  padding: 70px 0;
+  background-color: rgba(13,13,13,1.0);
+  // Footer Menu 底部分栏菜单
+  .footer-menu {
+    height: inherit;
+    padding: 0 20px;
+    @include box-center;
+    // 分栏菜单标题
+    .ft-submenu-header {
+      margin-bottom: 13px;
+      color: $hightlight;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    // 分栏菜单列表
+    .ft-submenu-list {
+      height: auto;
+      .ft-submenu-item {
+        height: 26px;
+        .ft-submenu-link {
+          @include submenu-text;
+        }
+      }
+    }
+    .ft-subscribe-text {
+      height: 26px;
+      color: $text;
+    }
+    .ft-subscribe-btn {
+      display: block;
+      width: 5rem;
+      height: 3rem;
+      margin-top: 2rem;
+      font-size: 12px;
+      font-weight: bold;
+      color: rgba(255,255,255,.8);
+      background-color: rgba(255,255,255,.3);
+      text-align:center;
+      line-height: 40px;
+      &:hover,&:focus {
+        color: black;
+        background-color: $hightlight;
+        text-decoration: none;
+      }
+    }
+  }
+  // Divider 分割线
+  .divider {
+    @include box-center;
+  }
+  // Social 社交信息
+  .social {
+    margin: 20px 0;
+    text-align: center;
+    a {
+      color: $hightlight;
+      text-decoration: none;
+    }
+    .icon {
+      margin: 0 15px;
+    }
+  }
+  // Copyright 版权信息
+  .copyright {
+    p {
+      color: $text;
+      font-size: 13px;
+      text-align: center;
+      break-word: break-word;
+      height: 26px;
+      line-height: 26px;
+    }
+  }
+}
