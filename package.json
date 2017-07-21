@@ -45,6 +45,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-slick": "^0.14.11",
+    "redux": "^3.7.2",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.70.0",
     "slick-carousel": "^1.6.0",
