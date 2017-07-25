@@ -1,0 +1,27 @@
+[
+  {
+    "title":"Colorful dress experience",
+    "des": "Plain life needs some color to fill",
+    "url": "http://localhost:8080/src/data/slider/woman-person-model-beauty.jpg"
+  },
+  {
+    "title": "Happy Shopping",
+    "des": "Enthusiasm for shopping make you happy",
+    "url": "http://localhost:8080/src/data/slider/a-happy-shopping-woman.jpg"
+  },
+  {
+    "title": "Lovers' clothes",
+    "des": "At the touch of love everyone becomes a poet",
+    "url": "http://localhost:8080/src/data/slider/a-cool-couple.jpg"
+  },
+  {
+    "title": "Sport Lifestyle",
+    "des": "Do Yoga, Make Art, Be You",
+    "url": "http://localhost:8080/src/data/slider/yoga-girls-personalization.jpg"
+  },
+  {
+    "title": "Fashion Men",
+    "des": "Pursuit personality is important",
+    "url": "http://localhost:8080/src/data/slider/hand-fashion-jewelry-beard.jpg"
+  }
+]
