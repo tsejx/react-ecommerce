@@ -3,137 +3,55 @@ import { Search, Grid, Header } from 'semantic-ui-react'
 
 import 'assets/style/header.scss';
 
-// 自动检索资源
-const source = [
-  {
-    id: 1499970633003,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633036,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 200,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633082,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 300,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633016,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 350,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633038,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633042,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633085,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970633069,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  },
-  {
-    id: 1499970243069,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 450,
-    salePrice: 150,
-    images: {
-      imgProduct: 'http://localhost:8080/src/assets/img/product/men/short-sleeved-cooton-shirt.jpg',
-      imgModel: ''
-    }
-  }
-];
-
+import axios from 'axios';
 
 class SearchBar extends Component {
   constructor(props){
     super(props);
     this.state = {
       isLoading: false,
+      loadData: [],
       results: [],
       value: ''
     };
+    this.handleResultSelect = this.handleResultSelect.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearching = this.handleSearching.bind(this);
     this.handleReachClear = this.handleReachClear.bind(this);
   }
-
-  // 点击搜索结果现在在文本框内
-  handleResultSelect(e, { result }){
-    this.setState({ value: result.title })
+  componentDidMount() {
+    axios
+    .get('http://localhost:8080/src/data/productData/database.json')
+    .then(res=>this.setState({loadData: res.data}))
+    .catch(err=>console.log(err))
   }
 
-  handleSearchChange(e, { value }){
+  // 点击搜索结果现在在文本框内
+  handleResultSelect(e){
+    this.setState({ value: e.target.innerHTML })
+  }
 
+  handleSearchChange(e){
     this.setState({ isLoading: true, value: e.target.value })
 
     setTimeout(() => {
       // 文本框内容为空，返回
       if (this.state.value.length < 1) return;
 
-      // 匹配数据的正则表达式
-      // const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const regSearch = new RegExp(this.state.value,'gim');
 
-      //
-      // const isMatch = (result) => re.test(result.title)
+      let resultMatch = new Array();
+
+      this.state.loadData.forEach(function(item,index){
+        if (item.name.search(regSearch) !== -1) resultMatch.push({title: item.name});
+      })
+
+      resultMatch = resultMatch.length <= 5?resultMatch:resultMatch.slice(0,5);
 
       this.setState({
         isLoading: false,
         // results: _.filter(source, isMatch),
-        results: [],
+        results: resultMatch
       })
 
     }, 500)
@@ -141,12 +59,8 @@ class SearchBar extends Component {
 
   handleSearching(e){
     if (e.keyCode !== 13 ) return;
-
-    this.props.history.replace({
-      pathname: '/search',
-      search: '?' + e.target.value
-    });
-
+    if (e.target.value.trim() === '') {console.log(1);return}
+    window.location.href = '/search?' + e.target.value;
   }
 
   handleReachClear(e){
@@ -162,8 +76,7 @@ class SearchBar extends Component {
     const {
       handleResultSelect,
       handleSearchChange,
-      handleSearching,
-      handleReachClear
+      handleSearching
     } = this;
 
     return (
@@ -174,7 +87,6 @@ class SearchBar extends Component {
         onResultSelect={handleResultSelect}
         onSearchChange={handleSearchChange}
         onKeyDown={handleSearching}
-        onBlur={handleReachClear}
         results={results}
         value={value}
       />

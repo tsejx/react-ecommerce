@@ -4,7 +4,7 @@ import { Menu, Button, Icon } from 'semantic-ui-react';
 
 import 'assets/style/header.scss';
 
-import PopupSignin from '../popup/PopupSignin';
+import PopupLogin from '../popup/PopupLogin';
 import PopupCart from '../popup/PopupCart';
 import SearchBar from './SearchBar';
 import TopBtn from '../main/TopBtn';
@@ -28,6 +28,10 @@ const dataToolBtnsRight = [
   }
 ]
 
+const propTypes = {
+  cart: PT.arrayOf(PT.object)
+}
+
 const ToolBtn = (index,feature,icon) => (
     <Button className="tool-btn" animated='fade' floated='right' tabIndex={index}>
       <Button.Content hidden>{feature}</Button.Content>
@@ -37,7 +41,7 @@ const ToolBtn = (index,feature,icon) => (
     </Button>
 )
 
-class ToolWrapper extends React.Component {
+class HeaderToolWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,6 +85,10 @@ class ToolWrapper extends React.Component {
   }
   render() {
 
+    let {
+      cart
+    } = this.props;
+
     let itemsToolRight = dataToolBtnsRight.map(function(item,index){
 
         let title = item.title
@@ -95,7 +103,7 @@ class ToolWrapper extends React.Component {
 
         switch(item.title){
           case 'sign-in':
-            popupWrap = (<PopupSignin btnTool={btnTool} />);
+            popupWrap = (<PopupLogin btnTool={btnTool}/>);
             break;
           case 'favorite':
             popupWrap = (btnTool);
@@ -104,7 +112,7 @@ class ToolWrapper extends React.Component {
             popupWrap = (btnTool);
             break;
           case 'cart':
-            popupWrap = (<PopupCart btnTool={btnTool}/>);
+            popupWrap = (<PopupCart cart={cart} btnTool={btnTool}/>);
             break;
         }
         return (
@@ -139,4 +147,6 @@ class ToolWrapper extends React.Component {
   }
 }
 
-export default ToolWrapper;
+HeaderToolWrapper.propTypes = propTypes;
+
+export default HeaderToolWrapper;
