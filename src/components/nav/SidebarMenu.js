@@ -20,6 +20,17 @@ class SidebarMenu extends React.Component {
     }
     this.handleItemClick = this.handleItemClick.bind(this);
   }
+  componentDidMount() {
+
+    const pathname = this.props.location.pathname;
+
+    let arrPathname = pathname.match(/\/[a-z\-]+/g);
+
+    if (arrPathname.length === 2) {
+      this.handleItemClick(arrPathname[1].substr(1))
+      this.props.handleProList(pathname,arrPathname[1].substr(1))
+    }
+  }
   handleItemClick(item){
     this.setState({activeItem: item});
   }
@@ -66,7 +77,7 @@ class SidebarMenu extends React.Component {
           className={activeItem === item?'selected':''}
           onClick={() => {
             handleItemClick(item)
-            handleProList(matchUrl + '/' +item)
+            handleProList(matchUrl + '/' +item,item)
           }}
           children={link}
         />

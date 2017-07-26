@@ -22,12 +22,11 @@
       }
     }
   }
-  // Sequence Menu 排序菜单
-  .sequence-menu {
+  .filter-menu {
     float: right;
-    right: 0;
-    display: inline-block;
-    width: 10rem;
+    width: 140px;
+    min-width: 0;
+    margin-right: 20px;
   }
   p {
     float: left;
@@ -76,4 +75,17 @@
   position: fixed;
   right: 2rem;
   bottom: 2rem;
+}
+
+#search-wrap {
+  .filter-menu {
+    float: right;
+    margin-right: 20px;
+  }
+  .segment {
+    height: 300px;
+    padding-top: 80px;
+    border: none;
+    box-shadow: none;
+  }
 }

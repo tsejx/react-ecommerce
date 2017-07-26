@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Loader } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
 import 'assets/style/main.scss';
@@ -15,7 +15,7 @@ const CategoryBanner = (props) => {
   )
 }
 
-class SortSite extends React.Component {
+class FilterSite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,6 +70,7 @@ class SortSite extends React.Component {
         <Grid.Column width={10}>
           <Switch>
             <Route
+              exact
               path={currentPath + '/*' }
               children={({ match, location }) => {
                 return(
@@ -82,6 +83,7 @@ class SortSite extends React.Component {
               }}
             />
             <Route
+              exact
               path={currentPath}
               children={() => {
                 return(
@@ -89,11 +91,10 @@ class SortSite extends React.Component {
                 )
               }}/>
           </Switch>
-
         </Grid.Column>
       </Grid>
     )
   }
 }
 
-export default SortSite;
+export default FilterSite;

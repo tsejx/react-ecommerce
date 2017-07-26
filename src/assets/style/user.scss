@@ -1,7 +1,9 @@
-// Sign In Site 登陆页
-#signin {
+// Login Site 登陆页
+#login-wrap {
   margin-bottom: 4rem;
+  .login-success {
 
+  }
 }
 
 #join-container {
@@ -13,7 +15,7 @@
 
 // Login Form 登录表格
 #checkout-controller.login-form,
-#signin.login-form,
+#login.login-form,
 .login-form {
   display: inline-block;
   width: 280px;
@@ -24,6 +26,7 @@
     margin-left:1rem;
     color:black;
     text-decoration: underline;
+    cursor: pointer;
     &:hover {
       color: rgba(0,0,0,.6);
     }

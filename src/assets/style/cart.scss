@@ -64,8 +64,12 @@
     width: 90%;
     margin: 2rem auto;
   }
-  .button {
+  .confrim-btn {
     margin-left: 3rem;
+  }
+  p a {
+    color: black;
+    font-weight:bold;
   }
 }
 
@@ -95,6 +99,9 @@
   .order-bill {
     @include bill;
     margin: 0;
+  }
+  .no-pro {
+    text-align:center;
   }
   #cart-window {
     width: 98%;

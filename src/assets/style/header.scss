@@ -44,6 +44,11 @@ $hundred: 100%;
   }
 }
 
+// Button to signin site 跳转到登录页的按钮
+.click-to-siginin a:hover{
+  color: white;
+}
+
 // Brand 品牌展示栏
 #header-brand {
   height: auto;

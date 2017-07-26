@@ -1,18 +1,17 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import BannerAnim from 'rc-banner-anim';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
-
-import 'assets/style/carousel.scss';
+import Scroll from '../scroll/Scroll';
 
 import axios from 'axios';
 
-import Scroll from '../scroll/Scroll';
+import 'assets/style/carousel.scss';
 
 const { Element, Arrow } = BannerAnim;
 const BgElement = Element.BgElement;
 
-class BannerCarousel extends React.Component {
+class BannerCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {

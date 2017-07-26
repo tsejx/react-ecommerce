@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Icon, Dimmer } from 'semantic-ui-react';
+import { Divider, Icon, Dimmer, Popup } from 'semantic-ui-react';
 
 import 'assets/style/footer.scss';
 

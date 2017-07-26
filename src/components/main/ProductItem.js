@@ -54,10 +54,10 @@ class ProductItem extends React.Component {
             <Icon name='heart' />
             Add Wishlist
           </a>
-          <a>
+          <Link to={`/${category}/${type}/${id}`}>
             <Icon name='shop' />
             Add Cart
-          </a>
+          </Link>
         </Card.Content>
       </Card>
     )

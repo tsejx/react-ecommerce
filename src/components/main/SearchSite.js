@@ -11,7 +11,8 @@ class SearchSite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataProducts: []
+      dataProducts: [],
+      isNotFound: false
     }
   }
   componentDidMount() {
@@ -23,12 +24,19 @@ class SearchSite extends React.Component {
     axios
     .get('http://localhost:8080/src/data/productData/database.json')
     .then(res => {
+
       const temp = new Array;
+
       res.data.forEach(function(item,index){
         if (regSearch.test(item.name)) temp.push(item);
       })
-      console.log(temp);
+
+      if (!temp.length) {this.setState({isNotFound: true})}
+
+      temp.sort(function(){ return 0.5 - Math.random() })
+
       this.setState({dataProducts: temp})
+
     })
     .catch(err => console.log(err))
 
@@ -37,8 +45,11 @@ class SearchSite extends React.Component {
   render(){
 
     const {
-      dataProducts
+      dataProducts,
+      isNotFound
     } = this.state;
+
+    const searchVal = decodeURI(this.props.location.search.substr(1));
 
     const productsCon = (
       <Route
@@ -47,18 +58,26 @@ class SearchSite extends React.Component {
             <ProductContainer
               location={location}
               dataProducts={dataProducts}
-              showcaseHeader={'Search:' + decodeURI(this.props.location.search.substr(1))}
+              showcaseHeader={'SEARCH RESULTS FOR : "' + searchVal + '"'}
             />
           )
         }}
       />
     )
 
-    const contentDisplay = !dataProducts.length ? <Segment id='loader-wrap'><Loader active size='massive'>Loading</Loader></Segment>:productsCon;
+    let contentDisplay = null;
+
+    if (isNotFound) {
+      contentDisplay = <Segment className='not-found-wrap'><h2>SORRY, WE DID NOT FIND ANY RESULT FOR YOUR SEARCH "{searchVal}".</h2><p>Please check the spelling or try again with a less specific term</p></Segment>
+    }else if (!dataProducts.length){
+     contentDisplay = (<Segment className='loader-wrap'><Loader active size='massive'>Loading</Loader></Segment>)
+    }else {
+      contentDisplay = productsCon;
+    }
 
     return(
       <Grid as='section' textAlign='center'>
-        <Grid.Column width={13}>
+        <Grid.Column width={13} id='search-wrap'>
           {contentDisplay}
         </Grid.Column>
       </Grid>

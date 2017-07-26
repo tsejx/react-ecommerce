@@ -11,56 +11,15 @@ const propTypes = {
   btnTool: PT.element
 }
 
-const dataOrder = [
-  {
-    id: 1499979633003,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 300,
-    salePrice: 300,
-    images: {
-      imgProduct: 'http://localhost:8080/src/data/productImages/men/shirts.jpg',
-      imgModel: ''
-    },
-    color: 'blue',
-    size: 'S',
-    quantity: 5
-  },
-  {
-    id: 1499970633103,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 1000,
-    salePrice: 100,
-    images: {
-      imgProduct: 'http://localhost:8080/src/data/productImages/men/shirts.jpg',
-      imgModel: ''
-    },
-    color: 'red',
-    size: 'XL',
-    quantity: 1
-  },
-  {
-    id: 1499979933003,
-    name: 'Short sleeved cooton shirt',
-    marketPrice: 300,
-    salePrice: 300,
-    images: {
-      imgProduct: 'http://localhost:8080/src/data/productImages/men/shirts.jpg',
-      imgModel: ''
-    },
-    color: 'blue',
-    size: 'S',
-    quantity: 5
-  }
-];
-
 const PopupCart = (props) => {
     let {
+      cart,
       btnTool
     } = props;
 
     let valueTotal = 0;
 
-    const itemsOrder = dataOrder.map(function(item,index){
+    const itemsOrder = cart.map(function(item,index){
 
       valueTotal += item.salePrice * item.quantity;
 
@@ -69,24 +28,34 @@ const PopupCart = (props) => {
       )
     })
 
+    const conHasPro = (
+      <div className='popup-cart'>
+
+        <Item.Group id='cart-window' divided>
+          {itemsOrder}
+        </Item.Group>
+
+        <OrderBill orderValue={valueTotal}/>
+
+        <Link
+          className='checkout-btn'
+          to='/cart'
+        >
+          CHECKOUT
+        </Link>
+      </div>
+    )
+
+    const conNoPro = (
+      <div className={'up-cart' + ' ' + 'no-pro'}>Your shopping bag is empty!</div>
+    )
+
+    const displayPopupCart = !cart.length ? conNoPro:conHasPro;
+
   return(
     <Popup trigger={btnTool} position='bottom center' hoverable>
       <Popup.Content>
-        <div className='popup-cart'>
-
-          <Item.Group id='cart-window' divided>
-            {itemsOrder}
-          </Item.Group>
-
-          <OrderBill orderValue={valueTotal}/>
-
-          <Link
-            className='checkout-btn'
-            to='/cart'
-          >
-            CHECKOUT
-          </Link>
-        </div>
+        {displayPopupCart}
       </Popup.Content>
     </Popup>
   )
