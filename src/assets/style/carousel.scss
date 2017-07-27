@@ -1,8 +1,4 @@
-$hundred: 100%;
-@mixin clear-box {
-  margin: 0;
-  padding: 0;
-}
+@import 'mixins.scss';
 
 // -----------------------------------
 // Carousel 走马灯
@@ -14,13 +10,13 @@ $hundred: 100%;
   overflow: hidden;
   cursor: default;
   .carousel-elem {
-    height: 100%;
+    height: $hundred;
     .carousel-bg {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: $hundred;
+      height: $hundred;
       overflow: hidden;
       background: {
         size: cover;
@@ -28,7 +24,7 @@ $hundred: 100%;
       }
     }
     @mixin carousel-text {
-      color: rgba(255,255,255,1.0);
+      color: white;
       text-align: center;
       letter-spacing: 2px;
       font: {
@@ -39,11 +35,14 @@ $hundred: 100%;
         background-color:transparent;
       }
     }
-    .carousel-title {
+    .carousel-header {
       margin: 280px auto 0;
-      h1 {
+      h2 {
         @include carousel-text;
         font-size: 96px;
+        &::selection{
+          color: $main-color;
+        }
       }
     }
     p {
@@ -51,6 +50,9 @@ $hundred: 100%;
       font: {
         size: 24px;
         weight: normal;
+      }
+      &::selection{
+        color: $main-color;
       }
     }
   }
@@ -60,19 +62,19 @@ $hundred: 100%;
     width: 50px;
     height: 100px;
     margin-top: -30px;
-    background-color: rgba(0,0,0,.1);
-    color: rgba(255,255,255,.6);
-    transition: 300ms;
+    background-color: rgba(black,.1);
+    color: rgba(white,.6);
+    @include transition();
     &:hover {
-      color: rgba(255,255,255,1.0);
-      background-color: rgba(0,0,0,.3);
+      color: white;
+      background-color: rgba(black,.3);
     }
   }
   @mixin both-prev-after {
     position: absolute;
     width: 5px;
     height: 30px;
-    background: rgba(255,255,255,1.0);
+    background: white;
     display: block;
     content: '';
   }
@@ -121,9 +123,9 @@ $hundred: 100%;
       width: 30px;
       height: 10px;
       margin: 0 5px;
-      border-radius: 5px;
-      transition: background-color 1000ms;
-      background-color: rgba(255,255,255,.3);
+      @include border-radius ();
+      @include transition(background-color,1s);
+      @include background-alpha(white,.3)
     }
   }
   .banner-anim-thumb {
@@ -142,7 +144,7 @@ $hundred: 100%;
       list-style:none;
     }
     .active {
-      background-color: rgba(255,255,255,1.0);
+      background-color: white;
     }
   }
 }
@@ -156,7 +158,7 @@ $hundred: 100%;
     padding-right: 4rem;
     font-size: 14px;
     font-weight: bold;
-    color: rgba(0,0,0,1.0);
+    color: black;
     text-align: right;
     cursor: pointer;
   }
@@ -190,7 +192,6 @@ $hundred: 100%;
           }
         }
       }
-
     }
   }
 }

@@ -1,3 +1,5 @@
+@import 'mixins.scss';
+
 // Hot Sale Product Wrap 热卖商品栏目
 #hot-products {
   width: 100%;
@@ -38,37 +40,37 @@
     box-shadow: none;
     &:hover {
       margin-top: -20px;
-      box-shadow: 0 10px 30px -5px rgba(0,0,0,.4);
-      transform: translateY(0px);
+      @include box-shadow (0, 10px, 30px, rgba(0,0,0,.4), -5px);
+      @include translateY (0);
     }
-    img {
+    .pro-images {
       width: 100%;
       height: 300px;
     }
-    .content {
+    .pro-info {
       height: 80px;
-    }
-    .header a {
-      display: inline-block;
-      width: 100%;
-      color: black;
-      overflow:hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .meta {
-      .market-price {
-        text-decoration: line-through;
+      .header a {
+        display: inline-block;
+        width: 100%;
+        color: black;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
-      .sale-price {
-        color: rgba(205, 32, 38, 1.0);
+      .meta {
+        .market-price {
+          text-decoration: line-through;
+        }
+        .sale-price {
+          color: $main-color;
+        }
       }
     }
-    .extra a{
-      &:first-child:hover {
+    .pro-tool {
+      .add-wishlist:hover {
         color: rgba(232,173,159,1.0);
       }
-      &:last-child {
+      .add-cart:last-child {
         display: inline-block;
         margin-left: 10px;
         &:hover {
@@ -100,6 +102,7 @@
   }
   // Product Price 商品价格分栏
   .product-price {
+    margin: 0;
     white-space: nowrap;
     span {
       line-height: 28px;
@@ -110,15 +113,15 @@
         size: 22px;
       };
       &.discount {
-        color: rgba(205, 32, 38, 1.0);
+        color: $main-color;
       }
       &.common {
-        color: rgba(0, 0, 0, 1.0);
+        color: black;
       }
     }
     span:last-child {
       margin-left: 10px;
-      color: rgba(0,0,0,1.0);
+      color: black;
       font-size: 18px;
       text-decoration: line-through;
     }
@@ -137,8 +140,8 @@
       width: 30px;
       // Cant use active as classname 这里不能用active做类名
       &.selected {
-        border: 1px solid rgba(0,0,0,1.0);
-        box-shadow: 0 0 0 2px  rgba(255,255,255,1.0) inset;
+        border: 1px solid black;
+        box-shadow: 0 0 0 2px  white inset;
       }
     }
   }
@@ -150,21 +153,21 @@
       flex-wrap: wrap;
       .button {
         @include btn-base;
-        border:2px solid rgba(0,0,0,1.0);
+        border:2px solid black;
         border-radius: none;
-        background-color: rgba(255,255,255,1.0);
-        color:rgba(0,0,0,1.0);
+        background-color: white;
+        color: black;
         transition: all .3s ease;
         &.selected {
-          color: rgba(255,255,255,1.0);
-          background-color: rgba(0,0,0,1.0);
-          box-shadow: 0 0 0 2px  rgba(255,255,255,1.0) inset;
+          color: white;
+          background-color: black;
+          box-shadow: 0 0 0 2px white inset;
         }
       }
     }
     // Product Size Guide 商品尺寸指引
     .product-size-guide {
-      color: rgba(0,0,0,1.0);
+      color: black;
       text-decoration: underline;
       cursor: pointer;
       &:hover {
@@ -174,14 +177,14 @@
   }
   // Product Count Bar 商品数量分栏
   .product-count {
-    color: rgba(0,0,0,1.0);
+    color: black;
     vertical-align: bottom;
     .num {
       display: inline-block;
       width: 50px;
       height: 35px;
-      border: 1px solid rgba(0,0,0,1.0);
-      background-color: rgba(255,255,255,1.0);
+      border: 1px solid black;
+      background-color: white;
       text-align: center;
       line-height: 35px;
     }
@@ -202,16 +205,16 @@
       }
     }
     .add-to-cart {
-      color: rgba(255,255,255,1.0);
-      background-color: rgba(0,0,0,1.0);
+      color: white;
+      background-color: black;
       &:hover {
         background-color: rgba(0,0,0,.2);
       }
     }
     .save-as-favourite {
-      color: rgba(0,0,0,1.0);
-      border: 2px solid rgba(0,0,0,1.0);
-      background: rgba(255,255,255,1.0);
+      color: black;
+      border: 2px solid black;
+      background: white;
       box-sizing: border-box;
       &:hover {
         color: rgba(0,0,0,.2);
@@ -222,7 +225,7 @@
         color: rgba(212,212,212,1.0);
       }
       .item.active,.item:hover {
-        color: rgba(0,0,0,1.0);
+        color: black;
         background-color: transparent;
       }
     }

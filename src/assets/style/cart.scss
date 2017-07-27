@@ -1,7 +1,3 @@
-#checkout {
-  margin-bottom: 4rem;
-}
-
 // Bill 订单结算的重用样式
 @mixin bill {
   width: 100%;
@@ -46,39 +42,44 @@
 }
 
 // Checkout Controller 下单操作栏
-#checkout-controller {
-  margin: 0 1rem;
-  padding-bottom: 2rem;
-  border: 1px solid rgba(0,0,0,.3);
-  height: auto;
-  h2 {
-    width: 94%;
-    margin: 0 auto;
-    padding: 18px 24px;
-  }
-  .control-wrap {
-    padding: 2rem 1.2rem;
-  }
-  // Confirm Order 确认订单信息
-  .table {
-    width: 90%;
-    margin: 2rem auto;
-  }
-  .confrim-btn {
-    margin-left: 3rem;
-  }
-  p a {
-    color: black;
-    font-weight:bold;
+#checkout {
+  margin-bottom: 4rem;
+  #checkout-controller {
+    margin: 0 1rem;
+    padding-bottom: 2rem;
+    border: 1px solid rgba(0,0,0,.3);
+    height: auto;
+    .controller-header {
+      width: 94%;
+      margin: 0 auto;
+      padding: 18px 24px;
+    }
+    .control-wrap {
+      padding: 2rem 1.2rem;
+    }
+    // Confirm Order 确认订单信息
+    .table {
+      width: 90%;
+      margin: 2rem auto;
+    }
+    .confrim-btn {
+      margin-left: 3rem;
+    }
+    .billdone-tips a {
+      color: black;
+      font-weight:bold;
+    }
   }
 }
+
+
 
 // Order Bar 订单栏
 #order-bar {
   margin: 0 1rem;
   border: 1px solid rgba(0,0,0,.3);
   min-height: 375px;
-  h2 {
+  .order-header {
     width: 100%;
     margin: 0;
     padding: 18px 24px;

@@ -1,4 +1,19 @@
-@mixin border-radius ($radius: 4px) {
+////////////////////////////////////
+///////Variables: $ 定义变量///////
+///////////////////////////////////
+$main-color: rgb(205, 32, 38);
+$hundred: 100%;
+
+////////////////////////////////////
+///Defining a Mixin 定义混合指令////
+///////////////////////////////////
+
+@mixin clear-box {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin border-radius ($radius: 5px) {
   border-radius     : $radius;
   -moz-border-radius    : $radius;
   -webkit-border-radius : $radius;
@@ -32,7 +47,7 @@
   -webkit-box-shadow  : $x-size $y-size $blur $spread $color;
 }
 
-@mixin transition ($type:all, $time:0.2s, $ease:ease) {
+@mixin transition ($type:all, $time:0.3s, $ease:ease) {
     transition      : $type $time $ease;
     -moz-transition   : $type $time $ease;
     -webkit-transition  : $type $time $ease;
@@ -45,25 +60,9 @@
   -webkit-animation : $name, $duration, $delay, $ease;
 }
 
-@mixin transform ($deg) {
-  transform     : $deg;
-  -moz-transform    : $deg;
-  -ms-transform   : $deg;
-  -o-transform    : $deg;
-  -webkit-transform : $deg;
-}
-
-@mixin scale ($multiplier) {
-  transform     : scale($multiplier);
-  -moz-transform    : scale($multiplier);
-  -ms-transform   : scale($multiplier);
-  -o-transform    : scale($multiplier);
-  -webkit-transform : scale($multiplier);
-}
-
-@mixin rotate ($deg) {
-  -moz-transform    : rotate($deg);
-  -ms-transform   : rotate($deg);
-  -o-transform    : rotate($deg);
-  -webkit-transform : rotate($deg);
+@mixin translateY ($deg) {
+  -moz-transform    : translateY($deg);
+  -ms-transform   : translateY($deg);
+  -o-transform    : translateY($deg);
+  -webkit-transform : translateY($deg);
 }

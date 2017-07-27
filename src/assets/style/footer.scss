@@ -1,6 +1,6 @@
 #footer {
-  $text: rgba(255,255,255,.3);
-  $hightlight: rgba(255,255,255,1.0);
+  $text: rgba(white,.3);
+  $hightlight: white;
   @mixin submenu-text {
     color: $text;
     font-size: 13px;
@@ -16,7 +16,7 @@
   }
   width: 100%;
   height: auto;
-  margin: 30 auto 0;
+  margin: 30px auto 0;
   padding: 70px 0;
   background-color: rgba(13,13,13,1.0);
   // Footer Menu 底部分栏菜单
@@ -54,8 +54,8 @@
       margin-top: 2rem;
       font-size: 12px;
       font-weight: bold;
-      color: rgba(255,255,255,.8);
-      background-color: rgba(255,255,255,.3);
+      color: rgba(white,.8);
+      background-color: $text;
       text-align:center;
       line-height: 40px;
       &:hover,&:focus {

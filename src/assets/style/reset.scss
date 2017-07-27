@@ -11,12 +11,9 @@ a {
 }
 
 ul, ol, li {
+  margin: 0;
+  padding: 0;
   list-style: none;
-}
-
-@font-face {
-  font-family: 'Fontin';
-  src:url('../font/Fontin/Fontin-Regular.ttf');
 }
 
 @font-face {
@@ -28,30 +25,3 @@ ul, ol, li {
   font-family: 'Oswald';
   src:url('../font/Oswald/Oswald-Regular.ttf');
 }
-
-@font-face {
-  font-family: 'Courgette';
-  src:url('../font/Courgette/Courgette-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'CevicheOne';
-  src:url('../font/Ceviche_One/CevicheOne-Regular.ttf');
-}
-
-// 配色方案1
-.color {
-  color: rgba(232,173,159,1.0);
-  color: rgba(38,70,98,1.0);
-  color: rgba(253,211,204,1.0);
-  color: rgba(213,164,153,1.0);
-  color: rgba(246,243,243,1.0);
-  color: rgba(103,122,146,1.0);
-  color: rgba(187,189,197,1.0);
-  color: rgba(255,255,255,.3);
-}
-
-.font {
-  font: italic small-caps 700 12px/24px "Microsoft YaHei";
-}
-
