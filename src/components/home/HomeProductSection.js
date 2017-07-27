@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
-
-import 'assets/style/product.scss';
-
 import ShowcaseHeader from '../header/ShowcaseHeader.js';
-import ProductItem from './ProductItem.js';
-
+import ProductItem from '../main/ProductItem.js';
+import 'assets/style/product.scss';
 import axios from 'axios';
 
-class ProductHomeSection extends React.Component {
+class HomeProductSection extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +15,7 @@ class ProductHomeSection extends React.Component {
     }
     this.handleReadMoreProduct = this.handleReadMoreProduct.bind(this);
   }
+
   componentDidMount() {
     axios
     .get('http://localhost:8080/src/data/productData/hotSale.json')
@@ -25,12 +24,15 @@ class ProductHomeSection extends React.Component {
     })
     .catch(err => console.log(err))
   }
+
   handleReadMoreProduct(){
     this.setState({
       isReadMore: true
     })
   }
+
   render() {
+
     const {
       isReadMore,
       dataHotSaleProduct
@@ -76,4 +78,4 @@ class ProductHomeSection extends React.Component {
   }
 }
 
-export default ProductHomeSection;
+export default HomeProductSection;

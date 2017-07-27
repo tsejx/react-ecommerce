@@ -1,18 +1,14 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React, { Component } from 'react';
 import { Grid, Icon } from 'semantic-ui-react';
-
+import Slider from 'react-slick';
 import ShowcaseHeader from '../header/ShowcaseHeader';
 import ProductItem from '../main/ProductItem';
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import 'assets/style/carousel.scss';
-
 import axios from 'axios';
 
-class RecommendCarousel extends React.Component {
+class RecommendCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +22,7 @@ class RecommendCarousel extends React.Component {
     .catch(err=>console.log(err))
   }
   render(){
-
+    // Carousel Settings 轮播图配置
     var settings = {
       accessibility: false,
       infinite: true,

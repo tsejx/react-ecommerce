@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Divider } from 'semantic-ui-react';
 
-import 'assets/style/header.scss';
-
 const HeaderDivider = (props) => {
 
   const secondary = props.location.pathname.match(/\/[a-z]+/)[0].substr(1);

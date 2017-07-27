@@ -1,11 +1,11 @@
 import React from 'react';
 import BannerCarousel from '../carousel/BannerCarousel';
-import ProductHomeSection from './ProductHomeSection';
+import HomeProductSection from './HomeProductSection';
 
-const Home = (props) => (
+const Home = () => (
   <section>
     <BannerCarousel/>
-    <ProductHomeSection/>
+    <HomeProductSection/>
   </section>
 )
 

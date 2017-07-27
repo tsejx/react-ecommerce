@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Grid, List } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import FooterSubMenu from './FooterSubMenu';
 import SubscribeMenu from './SubscribeMenu';
 
-// 底部子菜单显示文本的数据
+// Footer Submenu Text Data 底部子菜单显示文本的数据
 const dataFooterMenu = [
   {
     menuHeader: 'shop',
@@ -83,32 +82,25 @@ const dataFooterMenu = [
   }
 ]
 
-class FootMenu extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-  render(){
-
-    let itemsSubMenu = dataFooterMenu.map(function(item,index){
-      return(
-        <Grid.Column key={index}>
-          <FooterSubMenu {...item}/>
-        </Grid.Column>
-      )
-    })
-
+const FootMenu = (props) => {
+  let itemsSubMenu = dataFooterMenu.map(function(item,index){
     return(
-      <div className="footer-menu">
-          <Grid columns='four' divided>
-            <Grid.Row>
-              {itemsSubMenu}
-              <SubscribeMenu/>
-            </Grid.Row>
-          </Grid>
-      </div>
+      <Grid.Column key={index}>
+        <FooterSubMenu {...item}/>
+      </Grid.Column>
     )
-  }
+  })
+
+  return(
+    <div className="footer-menu">
+        <Grid columns='four' divided>
+          <Grid.Row>
+            {itemsSubMenu}
+            <SubscribeMenu/>
+          </Grid.Row>
+        </Grid>
+    </div>
+  )
 }
 
 export default FootMenu;

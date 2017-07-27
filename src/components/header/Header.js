@@ -1,9 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import HeaderToolWrapper from './HeaderToolWrapper';
-import HeaderBrand from './Brand';
+import HeaderBrand from './HeaderBrand';
 import HeaderNavigation from '../nav/HeaderMenu.js';
 import HeaderDivider from './HeaderDivider';
+import 'assets/style/header.scss';
+
+const propTypes = {
+  cart: PT.arrayOf(PT.object)
+}
 
 const Header = (props) => {
   let {
@@ -21,5 +26,7 @@ const Header = (props) => {
     </header>
   )
 }
+
+Header.propTypes = propTypes;
 
 export default Header;

@@ -11,7 +11,7 @@ const propTypes = {
 const ConfirmStep = (props) => (
   <Grid.Row id='checkout'>
     <Grid.Column id='checkout-controller' width='8' textAlign='left'>
-      <Header as='h2' content='CONFIRM ORDER' dividing/>
+      <Header as='h2' className='controller-header' content='CONFIRM ORDER' dividing/>
       <ConfirmOrder/>
       <Button
         className='confrim-btn'

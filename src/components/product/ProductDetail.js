@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Button, Icon, Tab, Popup } from 'semantic-ui-react';
+import { Button, Icon, Tab, Popup } from 'semantic-ui-react';
 
 const propTypes = {
   dataDes: PT.string,
@@ -47,7 +47,7 @@ const ProductDeatail = (props) => {
       <span className='delivers'>Delivers in: <strong>1-7 working days</strong></span>
       <Popup
         trigger={btnAddToCart}
-        content={hasSelected?'Successfully added to the shopping cart,but regretly to tell you that you just can buy this product once.':'Color and size must be selected.'}
+        content={hasSelected?'Successfully added to the shopping cart , but regretly to tell you that you just can buy this product once.':'Color and size must be selected.'}
         on='click'
         hideOnScroll
         inverted

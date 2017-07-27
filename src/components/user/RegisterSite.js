@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Grid, Header, Form, Button, Checkbox } from 'semantic-ui-react';
-
+import Scroll from '../scroll/Scroll';
 import 'assets/style/user.scss';
 
-import Scroll from '../scroll/Scroll';
+class RegisterSite extends Component {
 
-class RegisterSite extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
   componentDidMount() {
     Scroll(230,300);
   }
+
   render(){
     return(
       <Grid id='join-container' textAlign='center'>

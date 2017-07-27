@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Form, Header, Button, Dimmer, Popup } from 'semantic-ui-react';
 import axios from 'axios';
-
 import 'assets/style/user.scss';
 
 const propTypes = {
@@ -102,6 +100,5 @@ class LoginForm extends React.Component {
     )
   }
 }
-
 
 export default LoginForm;

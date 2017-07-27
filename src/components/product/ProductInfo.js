@@ -1,55 +1,15 @@
 import React from 'react';
-import { Grid, Image, Segment, Header, Statistic, Button } from 'semantic-ui-react';
-
-import axios from 'axios';
-
+import { Grid,  } from 'semantic-ui-react';
+import ProductImages from './ProductImages';
+import ProductHeader from './ProductHeader';
 import ProductColor from './ProductColor';
 import ProductSize from './ProductSize';
 import ProductCount from './ProductCount';
 import ProductDetail from './ProductDetail';
-
-
-// 左侧大图
-const ProductImages = (props) => (
-  <div class="product-image-container">
-    <Image src={props.img} fluid />
-  </div>
-);
-
-// 这里应该用变量代替价格，根据数据是否有价格对比而显示
-const ProductHeader = (props) => {
-  const {
-    name,
-    price:{
-      salePrice,
-      marketPrice
-    }
-  } = props;
-
-  let clsPrice = '',originValue,actualValue;
-
-  if (!marketPrice) {//原价
-    actualValue = '$' + salePrice;
-    originValue = null;
-    clsPrice = 'common';
-  }else{// 折扣价
-    actualValue = '$' + salePrice;
-    originValue = '$' + marketPrice;
-    clsPrice = 'discount';
-  }
-
-  return(
-    <div>
-      <Header as='h2' content={name}/>
-      <div className="product-price">
-        <span className={clsPrice}>{actualValue}</span><span>{originValue}</span>
-      </div>
-    </div>
-  )
-
-};
+import axios from 'axios';
 
 class ProductInfo extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +22,7 @@ class ProductInfo extends React.Component {
     this.handleSelectSize = this.handleSelectSize.bind(this);
     this.handleAddOnceToCart = this.handleAddOnceToCart.bind(this);
   }
+
   handleSelectColor(value){
     value = value.replace(/^[a-z]?/,function($0){
         return $0.toUpperCase();
@@ -70,11 +31,13 @@ class ProductInfo extends React.Component {
       selectedColor: value
     })
   }
+
   handleSelectSize(value){
     this.setState({
       selectedSize: value.toUpperCase()
     })
   }
+
   componentDidMount(){
     const arrPath = this.props.location.pathname.substr(1).split('/');
 
@@ -98,9 +61,11 @@ class ProductInfo extends React.Component {
     })
     .catch(err => console.log(err))
   }
+
   handleAddOnceToCart(){
     this.setState({canAddToCart: false})
   }
+
   render(){
 
     const {
@@ -167,8 +132,3 @@ class ProductInfo extends React.Component {
 }
 
 export default ProductInfo;
-
-// s 165-80A / Bust 88cm
-// m 170-84A / Bust 98cm
-// l 175-88A / Bust 108cm
-// xl 180-92A / Bust 116cm

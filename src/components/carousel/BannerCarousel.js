@@ -3,9 +3,7 @@ import BannerAnim from 'rc-banner-anim';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import Scroll from '../scroll/Scroll';
-
 import axios from 'axios';
-
 import 'assets/style/carousel.scss';
 
 const { Element, Arrow } = BannerAnim;
@@ -23,15 +21,20 @@ class BannerCarousel extends Component {
   }
   componentDidMount(){
     axios
-    .get('/src/data/carousel.json')
+    .get('/src/data/carousel.json',{dataType: 'json'})
     .then(res => this.setState({
       dataCarousel: res.data
     }))
     .catch(err => console.log(err));
     Scroll(330,300);
   }
+
+  componentWillUnmount() {
+    this.axios = null;
+  }
+
   onChange(e, int) {
-    // 在切换到下一个后把延时改掉。
+    // Change duration after switching to the next 在切换到下一个后把延时改掉。
     if (int === 1 && e === 'after' && !this.openSlide) {
       this.setState({
         delay: 600,
@@ -45,6 +48,7 @@ class BannerCarousel extends Component {
       dataCarousel
     } = this.state;
 
+    // Carousel Settings 轮播图配置
     const settings = {
       prefixCls: "carousel-wrap",
       type: "acrossOverlay",
@@ -79,9 +83,9 @@ class BannerCarousel extends Component {
           <TweenOne
             id='carousel-title'
             key='title'
-            className="carousel-title"
+            className="carousel-header"
             animation={{ y: 30, opacity: 0, type: 'from', delay: 600 }}>
-            <h1>{item.title}</h1>
+            <h2>{item.title}</h2>
           </TweenOne>
           <TweenOne
             id='carousel-text'
@@ -93,7 +97,6 @@ class BannerCarousel extends Component {
         </Element>
       )
     })
-
     return (
       <BannerAnim
         {...settings}
@@ -107,17 +110,3 @@ class BannerCarousel extends Component {
 }
 
 export default BannerCarousel;
-
-
-// <Arrow
-//   arrowType="prev"
-//   key="prev"
-//   prefixCls="user-arrow"
-// >
-// </Arrow>
-// <Arrow
-//   arrowType="next"
-//   key="next"
-//   prefixCls="user-arrow"
-// >
-// </Arrow>

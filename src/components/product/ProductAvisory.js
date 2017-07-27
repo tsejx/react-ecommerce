@@ -1,6 +1,5 @@
 import React from 'react'
-import { Grid, Divider, Accordion, Icon } from 'semantic-ui-react'
-import '../../util/mockAvisory.js';
+import { Grid, Divider, Accordion } from 'semantic-ui-react'
 
 const ProductAvisory = (props) => (
   <Grid.Column id='product-avisory' width={12}>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Search, Grid, Header } from 'semantic-ui-react'
-
-import 'assets/style/header.scss';
-
+import { Menu, Search } from 'semantic-ui-react'
 import axios from 'axios';
 
 class SearchBar extends Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -19,6 +17,7 @@ class SearchBar extends Component {
     this.handleSearching = this.handleSearching.bind(this);
     this.handleReachClear = this.handleReachClear.bind(this);
   }
+
   componentDidMount() {
     axios
     .get('http://localhost:8080/src/data/productData/database.json')
@@ -50,7 +49,6 @@ class SearchBar extends Component {
 
       this.setState({
         isLoading: false,
-        // results: _.filter(source, isMatch),
         results: resultMatch
       })
 
@@ -59,7 +57,7 @@ class SearchBar extends Component {
 
   handleSearching(e){
     if (e.keyCode !== 13 ) return;
-    if (e.target.value.trim() === '') {console.log(1);return}
+    if (e.target.value.trim() === '') return;
     window.location.href = '/search?' + e.target.value;
   }
 
@@ -72,7 +70,13 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { isLoading, value, results } = this.state;
+
+    const {
+      value,
+      results,
+      isLoading,
+    } = this.state;
+
     const {
       handleResultSelect,
       handleSearchChange,
@@ -80,16 +84,18 @@ class SearchBar extends Component {
     } = this;
 
     return (
-      <Search
-        className='search-bar'
-        placeholder='Search Products'
-        loading={isLoading}
-        onResultSelect={handleResultSelect}
-        onSearchChange={handleSearchChange}
-        onKeyDown={handleSearching}
-        results={results}
-        value={value}
-      />
+      <Menu.Menu position='right'>
+        <Search
+          className='search-bar'
+          placeholder='Search Products'
+          loading={isLoading}
+          onResultSelect={handleResultSelect}
+          onSearchChange={handleSearchChange}
+          onKeyDown={handleSearching}
+          results={results}
+          value={value}
+        />
+      </Menu.Menu>
     )
   }
 }

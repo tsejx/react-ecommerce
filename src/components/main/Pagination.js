@@ -9,19 +9,17 @@ const propTypes = {
 }
 
 class Pagination extends Component {
+
   constructor(props) {
     super(props);
-
     this.handleItemClick = this.handleItemClick.bind(this);
   }
+
   handleItemClick(){
     Scroll(290,300);
   }
-  render(){
-    const {
-      handleItemClick
-    } = this;
 
+  render(){
     const {
       page,
       currentPage
@@ -33,9 +31,9 @@ class Pagination extends Component {
       const link = (<Link to={'#'+(i+1)}>{i+1}</Link>)
       itemsPagination.push(
         <Menu.Item
-          as='span'
+          as='li'
           key={i}
-          className={i+1 === currentPage?'selected':''}
+          className={'page-item' + ' ' + `${i+1 === currentPage?'selected':''}`}
           children={link}
           onClick={this.handleItemClick}
         />
@@ -43,7 +41,7 @@ class Pagination extends Component {
     }
 
     return(
-      <Menu className='page-bar' pagination>
+      <Menu as='ul' className='page-bar' pagination>
         {itemsPagination}
       </Menu>
     )

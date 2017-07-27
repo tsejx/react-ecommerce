@@ -7,31 +7,33 @@ const propTypes = {
   headerSub: PT.string
 }
 
-class ShowcaseHeader extends React.Component {
-  render(){
-    const {
-      iconHeader,
-      headerMain,
-      headerSub
-    } = this.props;
-    let showIcon = null;
-    if (!!iconHeader) {
-      showIcon = (<Icon name={iconHeader} />)
-    }
-    return(
-      <Header
-        as='h2'
-        textAlign='center'
-        icon
-      >
-        {showIcon}
-        {headerMain}
-        <Header.Subheader>
-          {headerSub}
-        </Header.Subheader>
-      </Header>
-    )
+const ShowcaseHeader = (props) => {
+
+  const {
+    iconHeader,
+    headerMain,
+    headerSub
+  } = props;
+
+  let showIcon = null;
+
+  if (!!iconHeader) {
+    showIcon = (<Icon name={iconHeader} />)
   }
+
+  return(
+    <Header
+      as='h2'
+      textAlign='center'
+      icon
+    >
+      {showIcon}
+      {headerMain}
+      <Header.Subheader>
+        {headerSub}
+      </Header.Subheader>
+    </Header>
+  )
 }
 
 ShowcaseHeader.propTypes = propTypes;

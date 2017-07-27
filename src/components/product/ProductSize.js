@@ -1,6 +1,5 @@
 import React from 'react';
 import { Header, Button } from 'semantic-ui-react';
-
 import SizeGuide from './SizeGuide';
 
 const propTypes = {
@@ -41,6 +40,7 @@ class ProductSize extends React.Component {
     const itemsSizeBtn = dataSize.map(function(item,index){
       return(
         <Button
+          as='li'
           key={index}
           className={clsActive === item?'selected':''}
           onClick={ () => {
@@ -56,7 +56,7 @@ class ProductSize extends React.Component {
     return(
       <div class="product-size">
         <Header as='h4'>Size:{" "}<span>{selectedSize}</span></Header>
-        <Button.Group>
+        <Button.Group as='ul'>
           {itemsSizeBtn}
         </Button.Group>
         <SizeGuide/>

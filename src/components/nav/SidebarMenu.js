@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
 const dataLadiesMenu = ['shirts','dresses','short','skirts','knitwear','shoes'];
@@ -12,7 +12,8 @@ const propTypes = {
   handleProList: PT.func
 }
 
-class SidebarMenu extends React.Component {
+class SidebarMenu extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +21,8 @@ class SidebarMenu extends React.Component {
     }
     this.handleItemClick = this.handleItemClick.bind(this);
   }
-  componentDidMount() {
 
+  componentDidMount() {
     const pathname = this.props.location.pathname;
 
     let arrPathname = pathname.match(/\/[a-z\-]+/g);
@@ -31,18 +32,20 @@ class SidebarMenu extends React.Component {
       this.props.handleProList(pathname,arrPathname[1].substr(1))
     }
   }
+
   handleItemClick(item){
     this.setState({activeItem: item});
   }
+
   render(){
     const { handleItemClick } = this;
     const { activeItem } = this.state;
     const { handleProList } = this.props;
 
-    // 当前页面二级路径
+    // Secondary Path of Current Page 当前页面二级路径
     const matchUrl = this.props.match.url;
 
-    // 侧边栏菜单数据
+    // Data of Sidebar Menu 侧边栏菜单数据
     let dataSidebarMenu = null;
 
     switch(matchUrl){
@@ -72,9 +75,9 @@ class SidebarMenu extends React.Component {
 
       return (
         <Menu.Item
-          as='span'
+          as='li'
           key={index}
-          className={activeItem === item?'selected':''}
+          className={'sb-menu-item' + ' ' + `${activeItem === item?'selected':''}`}
           onClick={() => {
             handleItemClick(item)
             handleProList(matchUrl + '/' +item,item)
@@ -85,12 +88,14 @@ class SidebarMenu extends React.Component {
     })
 
     return(
-      <Menu className='sidebar-menu' text vertical>
-        <Menu.Item as='h3' header >SHOP BY PRODUCT</Menu.Item>
+      <Menu as='ul' className='sb-menu' text vertical>
+        <Menu.Item as='li' className='sb-menu-item' header >SHOP BY PRODUCT</Menu.Item>
           {itemsSidebarMenu}
       </Menu>
     )
   }
 }
+
+SidebarMenu.propTypes = propTypes;
 
 export default SidebarMenu;

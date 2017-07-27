@@ -11,57 +11,52 @@ let propTypes = {
   images: PT.object
 }
 
-class ProductItem extends React.Component {
-  constructor(props) {
-    super(props);
+const ProductItem = (props) => {
 
-  }
-  render(){
-    let {
-      id,
-      category,
-      type,
-      name,
-      price:{
-        marketPrice,
-        salePrice
-      },
-      images
-    } = this.props;
+  let {
+    id,
+    category,
+    type,
+    name,
+    price:{
+      marketPrice,
+      salePrice
+    },
+    images
+  } = props;
 
-    return(
-      <Card className='product-info'>
-        <Link to={`/${category}/${type}/${id}`} >
-          <Image className='' src={images.imgProduct} />
-        </Link>
-        <Card.Content>
-          <Card.Header>
-            <Link to={`/${category}/${type}/${id}`}>
-              {name}
-            </Link>
-          </Card.Header>
-          <Card.Meta>
-            <span className='market-price'>
-              ${marketPrice}
-            </span>
-            <span className='sale-price'>
-              ${salePrice}
-            </span>
-          </Card.Meta>
-        </Card.Content>
-        <Card.Content extra>
-          <a>
-            <Icon name='heart' />
-            Add Wishlist
-          </a>
+  return(
+    <Card className='product-info'>
+      <Link to={`/${category}/${type}/${id}`} >
+        <Image className='pro-images' src={images.imgProduct} />
+      </Link>
+      <Card.Content className='pro-info'>
+        <Card.Header as='h4'>
           <Link to={`/${category}/${type}/${id}`}>
-            <Icon name='shop' />
-            Add Cart
+            {name}
           </Link>
-        </Card.Content>
-      </Card>
-    )
-  }
+        </Card.Header>
+        <Card.Meta>
+          <span className='market-price'>
+            ${marketPrice}
+          </span>
+          <span className='sale-price'>
+            ${salePrice}
+          </span>
+        </Card.Meta>
+      </Card.Content>
+      <Card.Content extra className='pro-tool'>
+        <a className='add-wishlist'>
+          <Icon name='heart' />
+          Add Wishlist
+        </a>
+        <Link to={`/${category}/${type}/${id}`} className='add-cart'>
+          <Icon name='shop' />
+          Add Cart
+        </Link>
+      </Card.Content>
+    </Card>
+  )
 }
 
 ProductItem.propTypes = propTypes;

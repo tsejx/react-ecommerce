@@ -1,8 +1,6 @@
 import React from 'react';
 import { Grid, Header, Step } from 'semantic-ui-react';
 
-
-
 const propTypes = {
   steps: PT.arrayOf(PT.object)
 }

@@ -1,21 +1,18 @@
-import React from 'react';
-import { Route, Switch, Loader } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-
-import 'assets/style/main.scss';
-
 import SidebarMenu from '../nav/SidebarMenu';
 import ProductContainer from './ProductContainer';
 import Scroll from '../scroll/Scroll';
 import axios from 'axios';
+import 'assets/style/main.scss';
 
-const CategoryBanner = (props) => {
-  return(
-    <img src={'http://localhost:8080/src/assets/img'+ props.bannerPath +'Banner.jpg'}/>
-  )
-}
+const CategoryBanner = (props) => (
+  <img src={'http://localhost:8080/src/assets/img'+ props.bannerPath +'Banner.jpg'}/>
+)
 
-class FilterSite extends React.Component {
+class FilterSite extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,26 +22,31 @@ class FilterSite extends React.Component {
     this.handleProList = this.handleProList.bind(this);
     this.handleGetData = this.handleGetData.bind(this);
   }
+
   componentDidMount() {
     const arrSitePath = this.props.location.pathname.match(/\/[a-z\-]*/g);
-    if (!arrSitePath[1] || arrSitePath[1] === 'view-all') {
-      console.log('need getting all data')
-    }else{
+
+    if (arrSitePath[1]) {
       this.handleGetData(arrSitePath.join(''));
     }
+
     Scroll(290,300);
   }
+
   handleGetData(path){
     axios
     .get('http://localhost:8080/src/data/productData' + path + '.json')
     .then(res => this.setState({dataProducts: res.data}))
     .catch(err => console.log(err))
   }
+
   handleProList(path,nameProList){
     this.handleGetData(path);
     this.setState({nameProList:nameProList.toUpperCase()})
   }
+
   render() {
+
     const {
       handleProList
     } = this;
@@ -58,7 +60,7 @@ class FilterSite extends React.Component {
 
     return(
       <Grid id='main-wrap' textAlign='center'>
-        <Grid.Column width={3} textAlign='left'>
+        <Grid.Column as='aside' width={3} textAlign='left'>
           <Route
             children={({ match, location }) => {
               return(
@@ -67,7 +69,7 @@ class FilterSite extends React.Component {
             }}
           />
         </Grid.Column>
-        <Grid.Column width={10}>
+        <Grid.Column as='section' width={10}>
           <Switch>
             <Route
               exact

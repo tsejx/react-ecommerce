@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Grid, Segment, Loader } from 'semantic-ui-react';
 import ProductContainer from './ProductContainer';
 import Scroll from '../scroll/Scroll';
 import axios from 'axios';
-
 import 'assets/style/main.scss';
 
-class SearchSite extends React.Component {
+class SearchSite extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +15,7 @@ class SearchSite extends React.Component {
       isNotFound: false
     }
   }
+
   componentDidMount() {
 
     const searchVal = this.props.location.search.substr(1);
@@ -42,6 +43,7 @@ class SearchSite extends React.Component {
 
     Scroll(290,300);
   }
+
   render(){
 
     const {
@@ -70,7 +72,7 @@ class SearchSite extends React.Component {
     if (isNotFound) {
       contentDisplay = <Segment className='not-found-wrap'><h2>SORRY, WE DID NOT FIND ANY RESULT FOR YOUR SEARCH "{searchVal}".</h2><p>Please check the spelling or try again with a less specific term</p></Segment>
     }else if (!dataProducts.length){
-     contentDisplay = (<Segment className='loader-wrap'><Loader active size='massive'>Loading</Loader></Segment>)
+      contentDisplay = (<Segment className='loader-wrap'><Loader active size='massive'>Loading</Loader></Segment>)
     }else {
       contentDisplay = productsCon;
     }

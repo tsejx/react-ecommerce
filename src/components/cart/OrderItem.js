@@ -1,7 +1,5 @@
 import React from 'react';
-import { Item, Label } from 'semantic-ui-react';
-
-import 'assets/style/cart.scss';
+import { Item } from 'semantic-ui-react';
 
 const propTypes = {
   id: PT.number,
@@ -14,21 +12,17 @@ const propTypes = {
   quantity: PT.number
 }
 
-class OrderItem extends React.Component {
-  constructor(props) {
-    super(props);
+const OrderItem = (props) => {
+  const {
+    name,
+    salePrice,
+    srcImg,
+    color,
+    size,
+    quantity
+  } = props;
 
-  }
-  render(){
-    const {
-      name,
-      salePrice,
-      srcImg,
-      color,
-      size,
-      quantity
-    } = this.props;
-    return(
+  return(
     <Item>
       <Item.Image src={srcImg} />
       <Item.Content className='item-content'>
@@ -42,8 +36,7 @@ class OrderItem extends React.Component {
         </Item.Meta>
       </Item.Content>
     </Item>
-    )
-  }
+  )
 }
 
 OrderItem.propTypes = propTypes;

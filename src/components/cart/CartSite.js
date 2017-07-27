@@ -1,17 +1,15 @@
-import React from 'react';
-import { Grid, Header, Button } from 'semantic-ui-react';
-import { Route, Link } from 'react-router-dom';
-
-import 'assets/style/cart.scss';
-import 'assets/style/user.scss';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
 
 import StepProgress from './StepProgress';
-
 import SigninStep from './SigninStep';
 import ConfirmStep from './ConfirmStep';
 import BillDoneStep from './BillDoneStep';
-
 import Scroll from '../scroll/Scroll';
+
+import 'assets/style/cart.scss';
+import 'assets/style/user.scss';
 
 const propTypes = {
   isLogin: PT.bool,
@@ -19,7 +17,7 @@ const propTypes = {
   handleLogin: PT.func
 }
 
-class CartSite extends React.Component {
+class CartSite extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,9 +32,9 @@ class CartSite extends React.Component {
     this.setState({isConfirm: true})
   }
   render(){
-      const {
-        handleBillDone
-      } = this;
+    const {
+      handleBillDone
+    } = this;
 
     const {
       isConfirm
@@ -52,16 +50,16 @@ class CartSite extends React.Component {
       { completed: isLogin, active: !isLogin, title: 'SIGNIN', icon: 'id card outline'},
       { completed: isConfirm, active: isLogin && !isConfirm, title: 'CONFIRM ORDER', icon: 'idea'},
       { completed: isConfirm, active: false, title: 'THANK YOU', icon:'truck'}
-    ]
+    ];
 
     let displayContainer = null;
 
     if(!isLogin){
-      displayContainer = <SigninStep cart={cart} isLogin={isLogin} handleLogin={handleLogin}/>
+      displayContainer = <SigninStep cart={cart} isLogin={isLogin} handleLogin={handleLogin}/>;
     }else if(!isConfirm){
-      displayContainer = <ConfirmStep cart={cart} handleBillDone={handleBillDone}/>
+      displayContainer = <ConfirmStep cart={cart} handleBillDone={handleBillDone}/>;
     }else{
-      displayContainer = <Route component={BillDoneStep}/>
+      displayContainer = <Route component={BillDoneStep}/>;
     }
 
     return (
@@ -72,5 +70,7 @@ class CartSite extends React.Component {
     )
   }
 }
+
+CartSite.propTypes = propTypes;
 
 export default CartSite;

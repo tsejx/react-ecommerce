@@ -8,7 +8,7 @@ import OrderBar from './OrderBar';
 const SigninStep = (props) => (
   <Grid.Row id='checkout'>
     <Grid.Column id='checkout-controller' width='8' textAlign='left'>
-      <Header as='h2' content='SIGN IN' dividing/>
+      <Header as='h2' className='controller-header' content='SIGN IN' dividing/>
       <Grid className='control-wrap'>
         <LoginForm isLogin={props.isLogin} handleLogin={props.handleLogin}/>
         <NewCustomer/>

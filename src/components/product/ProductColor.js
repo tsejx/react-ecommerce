@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Header, Button } from 'semantic-ui-react';
-
-import 'assets/style/product.scss';
 
 const propTypes = {
   dataColor: PT.array,
@@ -9,7 +7,8 @@ const propTypes = {
   handleSelectColor: PT.func
 }
 
-class ProductColor extends React.Component {
+class ProductColor extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,11 +16,13 @@ class ProductColor extends React.Component {
     }
     this.activeColor = this.activeColor.bind(this);
   }
+
   activeColor(color){
     this.setState({
       clsActive: color
     })
   }
+
   render(){
     const {
       activeColor
@@ -40,6 +41,7 @@ class ProductColor extends React.Component {
     const itemsColorBtn = dataColor.map(function(item,index){
       return(
         <Button
+          as='li'
           disabled={false}
           key={index}
           className={clsActive === item ?'selected':''}
@@ -55,7 +57,7 @@ class ProductColor extends React.Component {
     return(
       <div class="product-color">
         <Header as='h4'>Color:{" "}<span>{selectedColor}</span></Header>
-        <Button.Group size='small'>
+        <Button.Group as='ul' size='small'>
           {itemsColorBtn}
         </Button.Group>
       </div>
