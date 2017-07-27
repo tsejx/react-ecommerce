@@ -7,7 +7,7 @@ import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 
 // Home 首页组件
-import Home from '../components/main/HomeContainer';
+import Home from '../components/home/HomeContainer';
 
 // Classification 分类页组件
 import FilterSite from '../components/main/FilterSite';
@@ -26,6 +26,7 @@ import LoginSite from '../components/user/LoginSite';
 import RegisterSite from '../components/user/RegisterSite';
 
 class RouteApp extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -35,9 +36,11 @@ class RouteApp extends React.Component {
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
+
   handleAddToCart(product){
     this.setState({cart: [...this.state.cart,product]})
   }
+
   handleLogin(email,password){
     let dataUser = new Array;
 
@@ -54,6 +57,7 @@ class RouteApp extends React.Component {
     })
     .catch(err=>console.log(err))
   }
+
   render(){
 
     const {
