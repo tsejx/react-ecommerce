@@ -38,7 +38,3 @@ const color = ['red','orange','yellow','olive','teal','pink','brown','black']
 const sizeTops = ['XS','S','M','L','XL','XXL','XXXL']
 
 const sizeTopsKids = ['56CM','62CM','68CM','74CM','80CM','86CM','92CM','98CM']
-
-const sizeBottoms = []
-
-const sizeShoes = []

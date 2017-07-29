@@ -23,7 +23,7 @@ class SearchSite extends Component {
     const regSearch = new RegExp(searchVal,'gim');
 
     axios
-    .get('http://localhost:8080/src/data/productData/database.json')
+    .get('/src/data/productData/database.json')
     .then(res => {
 
       const temp = new Array;

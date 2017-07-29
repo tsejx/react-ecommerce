@@ -41,7 +41,7 @@ class ProductInfo extends React.Component {
   componentDidMount(){
     const arrPath = this.props.location.pathname.substr(1).split('/');
 
-    const pathCategory = 'http://localhost:8080/src/data/productData/' + arrPath[0] + '/' + arrPath[1] + '.json';
+    const pathCategory = '/src/data/productData/' + arrPath[0] + '/' + arrPath[1] + '.json';
 
     const idProduct = arrPath[2];
 

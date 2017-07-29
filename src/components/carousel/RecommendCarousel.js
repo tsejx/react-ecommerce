@@ -17,7 +17,7 @@ class RecommendCarousel extends Component {
   }
   componentDidMount() {
     axios
-    .get('http://localhost:8080/src/data/productData/hotSale.json')
+    .get('/src/data/productData/hotSale.json')
     .then(res=>this.setState({dataCommend: [...res.data]}))
     .catch(err=>console.log(err))
   }

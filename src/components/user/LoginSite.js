@@ -24,7 +24,7 @@ const LoginFormWrap = (props) => (
 const LoginDoneWrap = (props) => (
   <Grid className='login-success' textAlign='center'>
     <Message size='huge' positive>
-      <Message.Header textAlign='center'>You have successfully logged in.</Message.Header>
+      <Message.Header>You have successfully logged in.</Message.Header>
       <p>Now you can go to the mall to buy your favorite clothes</p>
     </Message>
   </Grid>

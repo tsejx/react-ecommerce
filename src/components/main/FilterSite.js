@@ -8,7 +8,7 @@ import axios from 'axios';
 import 'assets/style/main.scss';
 
 const CategoryBanner = (props) => (
-  <img src={'http://localhost:8080/src/assets/img'+ props.bannerPath +'Banner.jpg'}/>
+  <img src={require('../../assets/img'+ props.bannerPath +'Banner.jpg')}/>
 )
 
 class FilterSite extends Component {
@@ -35,7 +35,7 @@ class FilterSite extends Component {
 
   handleGetData(path){
     axios
-    .get('http://localhost:8080/src/data/productData' + path + '.json')
+    .get('/src/data/productData' + path + '.json')
     .then(res => this.setState({dataProducts: res.data}))
     .catch(err => console.log(err))
   }

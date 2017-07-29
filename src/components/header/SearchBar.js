@@ -20,7 +20,7 @@ class SearchBar extends Component {
 
   componentDidMount() {
     axios
-    .get('http://localhost:8080/src/data/productData/database.json')
+    .get('/src/data/productData/database.json')
     .then(res=>this.setState({loadData: res.data}))
     .catch(err=>console.log(err))
   }
