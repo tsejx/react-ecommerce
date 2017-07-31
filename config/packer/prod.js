@@ -20,45 +20,41 @@ module.exports = {
     publicPath: base.publicPath
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      include: base.srcPath,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: {
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-            modules: false,
-            localIdentName: '[name]__[local]__[hash:base64:5]'
-          }
-        }
-      })
-    }, {
-      test: /\.css$/,
-      include: [base.libPath, base.semanticPath]
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: {
-          loader: 'css-loader',
-          options: {
-            modules: false
-          }
-        }
-      })
-    }, {
-      test: /\.jsx?$/,
-      include: base.srcPath,
-      use: 'babel-loader'
-    }, {
-      test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          name: 'assets/[name]_[sha512:hash:base64:7].[ext]'
-        }
+    rules: [
+      {
+        test: /\.css$/,
+        include: base.srcPath,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {loader: 'css-loader', options: {minimize: false, modules: false, localIdentName: '[name]__[local]__[hash:base64:5]'}}
+        })
+      },
+      {
+        test: /\.css$/,
+        include: base.libPath,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {loader: 'css-loader', options: {modules: false}}
+        })
+      },
+      {
+        test: /\.jsx?$/,
+        include: base.srcPath,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf)$/,
+        use: {loader: 'file-loader', options: {name: 'assets/[name]_[sha512:hash:base64:7].[ext]'}}
+      },
+      {
+        test: /\.scss$/,
+        include: base.srcPath,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       }
-    }]
+    ]
   },
   resolve: {
     alias: {},
