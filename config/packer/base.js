@@ -6,6 +6,6 @@ module.exports = {
   rootPath: process.cwd(),
   srcPath: path.resolve(process.cwd(), 'src'),
   libPath: path.resolve(process.cwd(), 'node_modules'),
-  masterPath: path.resolve(process.cwd(), 'config', 'head.png'),
+  masterPath: path.resolve(process.cwd(), 'config', 'avatar.png'),
   semanticPath: path.resolve(process.cwd(), 'node_modules/semantic-ui-css')
 }

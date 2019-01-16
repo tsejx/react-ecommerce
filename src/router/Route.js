@@ -5,22 +5,16 @@ import axios from 'axios';
 // Publick 公用组件
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
-
 // Home 首页组件
 import Home from '../components/home/HomeContainer';
-
 // Classification 分类页组件
 import FilterSite from '../components/main/FilterSite';
-
 // Search 搜索页组件
 import SearchSite from '../components/main/SearchSite';
-
 // Detail 商品详情页组件
 import ProductDetailSite from '../components/product/ProductDetailSite';
-
 // Cart 购物车组件
 import CartSite from '../components/cart/CartSite';
-
 // Register & Login 登录注册组件
 import LoginSite from '../components/user/LoginSite';
 import RegisterSite from '../components/user/RegisterSite';
@@ -73,7 +67,7 @@ class RouteApp extends React.Component {
     return(
       <Router history={browserHistory}>
         <div id='body'>
-          <Route children={({location})=>{
+          {/* <Route children={({location})=>{
             return(
               <Header location={location} cart={cart}/>
             )
@@ -95,7 +89,7 @@ class RouteApp extends React.Component {
             <Route path='/:category' component={FilterSite} />
             <Redirect from='*' to='/'  />
           </Switch>
-          <Route component={Footer}/>
+          <Route component={Footer}/> */}
         </div>
       </Router>
     )
