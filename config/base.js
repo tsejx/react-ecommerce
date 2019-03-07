@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   publicPath: '/',
-  staticPath: path.resolve(process.cwd(), 'dist'),
   rootPath: process.cwd(),
+  staticPath: path.resolve(process.cwd(), 'dist'),
   srcPath: path.resolve(process.cwd(), 'src'),
   entryPath: path.resolve(process.cwd(), 'src/index.js'),
   libPath: path.resolve(process.cwd(), 'node_modules'),

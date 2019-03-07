@@ -104,6 +104,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       path: base.staticPath,
       template: './src/index.html',
+      favicon: './public/favicon.ico',
       title: 'Nike.com',
       hash: true,
     }),
