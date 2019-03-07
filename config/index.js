@@ -1,16 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const WebpackDevServer = require('webpack-dev-server');
 const OpenBrowser = require('open-browser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const base = require('./packer/base.js');
+// import ManifestPlugin from 'webpack-manifest-plugin';
 
-const resolve = src => path.resolve(__dirname, src);
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const HappyPack = require('happypack')
+// const ParallelUgilifyPlugin = require('')
+// const DllPlugin = require('')
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const base = require('./base.js');
 
 const env = process.env.NODE_ENV;
 
@@ -22,39 +27,65 @@ module.exports = {
   // mode: 'development',
 
   entry: {
-    index: './src/index.js',
+    index: base.entryPath,
     // vendor: ['react', 'react-dom'],
   },
 
   output: {
     filename: '[name].[hash:5].js',
-    publicPath: resolve('/'),
-    path: resolve('./dist'),
+    publicPath: base.publicPath,
+    path: base.staticPath,
   },
 
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
+        include: base.srcPath,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.(sc|c)ss$/,
         use: [
-          env ? 'style-laoder' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
+          // 'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            // options: {
+            //   modules: true,
+            //   localIdentName: '[name]__[local][hash:base64:5]',
+            // },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                // require('precss'),
+                require('autoprefixer'),
+              ],
+            },
+          },
           'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [base.resetCssPath, base.mixinCssPath, base.constantCssPath],
+            },
+          },
         ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'assets/[name].[sha512:hash:base64:5].[ext]',
+              // limit: 10000,
+              // name: '[name].[sha512:hash:base64:5].[ext]',
             },
           },
         ],
@@ -63,7 +94,7 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin({}),
+    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       // filename: env ? '[name].css' : '[name].[hash:5].css',
       filename: '[name].css',
@@ -71,17 +102,30 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
-      // path: resolve('dist'),
+      path: base.staticPath,
       template: './src/index.html',
-      title: 'ReactApp',
+      title: 'Nike.com',
       hash: true,
     }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'server',
+    //   analyzerPort: 5678,
+    //   openAnalyzer: true,
+    // }),
   ],
 
   resolve: {
-    alias: {},
-    extensions: ['.js'],
-    // modules: [resolve('src'), 'node_modules'],
+    alias: {
+      '@pages': base.pagesPath,
+      '@components': base.componentsPath,
+      '@constants': base.constantsPath,
+      '@utils': base.utilsPath,
+      '@assets': base.assetsPath,
+      '@layout': base.layoutPath,
+    },
+    extensions: ['.js', '.scss', '.css'],
+    modules: [base.libPath],
+    // mainFields: ['jsnext:main', 'main'],
   },
 
   optimization: {
@@ -106,12 +150,21 @@ module.exports = {
     // },
   },
 
+  watch: true,
+
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 300,
+    poll: 1000,
+  },
+
   devServer: {
     contentBase: path.join(__dirname, './dist'),
     port: 8080,
     compress: true,
     open: true,
     hot: true,
+    noInfo: true,
     // inline: true,
   },
 
