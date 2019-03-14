@@ -1,0 +1,34 @@
+$footer: footer;
+
+.#{$footer} {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    padding: 20px 0;
+    box-sizing: border-box;
+
+    .#{$footer}-list {
+        display: flex;
+        width: 55%;
+        margin: 0 auto;
+        padding: 20px 0;
+        flex-direction: row;
+        justify-content: space-evenly;
+        list-style: none;
+
+        .#{$footer}-item {
+            display: inline-block;
+            height: 24px;
+            line-height: 24px;
+            // cursor: pointer;
+
+            .#{$footer}-label {
+                float: right;
+                font-family: $font-family;
+                font-weight: bold;
+                line-height: 24px;
+                user-select: none;
+            }
+        }
+    }
+}
